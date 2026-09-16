@@ -97,7 +97,7 @@
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@android:drawable/ic_menu_preferences"
-            android:contentDescription="@string/settings"
+            android:contentDescription="设置"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:padding="4dp"
