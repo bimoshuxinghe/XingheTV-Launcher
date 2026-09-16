@@ -1,27 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:focusable="false">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
 
-    <include layout="@layout/edit_mode_background" />
-
-    <include layout="@layout/wallpaper" />
-
+    <!-- 动态壁纸背景 -->
     <ImageView
-        android:id="@id/click_circle_layer"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:contentDescription="@null"
+        android:id="@+id/db_wallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@null" />
+
+    <!-- 半透明遮罩，增强文字可读性 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/db_black_20" />
+
+    <!-- 顶部状态栏 -->
+    <LinearLayout
+        android:id="@+id/db_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="40dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp">
+
+        <!-- 天气 -->
+        <LinearLayout
+            android:id="@+id/db_weather"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="8dp">
+
+            <ImageView
+                android:id="@+id/db_weather_icon"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:src="@android:drawable/ic_menu_mylocation"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:id="@+id/db_weather_temp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--°"
+                android:textColor="@color/db_white"
+                android:textSize="18sp"
+                android:layout_marginLeft="6dp" />
+
+            <TextView
+                android:id="@+id/db_weather_city"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="--"
+                android:textColor="@color/db_white_60"
+                android:textSize="14sp"
+                android:layout_marginLeft="8dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <!-- 时间 -->
+        <TextView
+            android:id="@+id/db_clock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--:--"
+            android:textColor="@color/db_white"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/db_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="--月--日 星期--"
+            android:textColor="@color/db_white_60"
+            android:textSize="14sp"
+            android:layout_marginLeft="12dp" />
+
+        <!-- 设置按钮 -->
+        <ImageView
+            android:id="@+id/db_settings"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@android:drawable/ic_menu_preferences"
+            android:contentDescription="@string/settings"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="4dp"
+            android:layout_marginLeft="20dp" />
+    </LinearLayout>
+
+    <!-- 主内容 ViewPager -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/db_view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="100dp"
+        android:clipToPadding="false"
+        android:clipChildren="false" />
+
+    <!-- 底部渐变遮罩 -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/db_bottom_gradient" />
+
+    <!-- 底部快捷栏 -->
+    <LinearLayout
+        android:id="@+id/db_shortcut_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"
+        android:clipChildren="false">
+
+        <!-- 快捷方式1：清理 -->
+        <LinearLayout
+            android:id="@+id/db_shortcut_clean"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="12dp"
+            android:layout_marginRight="16dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@android:drawable/ic_menu_delete"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="清理"
+                android:textColor="@color/db_white"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- 快捷方式2：文件 -->
+        <LinearLayout
+            android:id="@+id/db_shortcut_file"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="12dp"
+            android:layout_marginRight="16dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@android:drawable/ic_menu_agenda"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="文件"
+                android:textColor="@color/db_white"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- 快捷方式3：壁纸 -->
+        <LinearLayout
+            android:id="@+id/db_shortcut_wallpaper"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="12dp"
+            android:layout_marginRight="16dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@android:drawable/ic_menu_gallery"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="壁纸"
+                android:textColor="@color/db_white"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+
+        <!-- 快捷方式4：设置 -->
+        <LinearLayout
+            android:id="@+id/db_shortcut_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@android:drawable/ic_menu_preferences"
+                android:contentDescription="@null" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="设置"
+                android:textColor="@color/db_white"
+                android:textSize="12sp"
+                android:layout_marginTop="4dp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 页面指示器 -->
+    <LinearLayout
+        android:id="@+id/db_page_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        android:layout_marginBottom="4dp"
         android:visibility="gone" />
 
-    <androidx.leanback.widget.VerticalGridView
-        android:id="@id/main_list_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:focusable="true" />
-
-    <include layout="@layout/edit_mode_layer" />
 </FrameLayout>

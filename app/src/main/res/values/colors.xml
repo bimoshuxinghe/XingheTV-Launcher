@@ -101,4 +101,22 @@
     <color name="settings_launch_ripple_color">#ff3d3d3d</color>
     <color name="settings_selection_indicator_color">#4ceeeeee</color>
     <color name="amazon_orange">#ffa724</color>
+    <!-- 星河桌面-当贝风格颜色 -->
+    <color name="db_white">#ffffffff</color>
+    <color name="db_white_80">#ccffffff</color>
+    <color name="db_white_60">#99ffffff</color>
+    <color name="db_white_40">#66ffffff</color>
+    <color name="db_white_20">#33ffffff</color>
+    <color name="db_white_10">#1affffff</color>
+    <color name="db_black">#ff000000</color>
+    <color name="db_black_60">#99000000</color>
+    <color name="db_black_40">#66000000</color>
+    <color name="db_black_20">#33000000</color>
+    <color name="db_focus_border">#ffffffff</color>
+    <color name="db_focus_bg">#33ffffff</color>
+    <color name="db_bottom_mask_start">#00000000</color>
+    <color name="db_bottom_mask_end">#cc000000</color>
+    <color name="db_status_bar_bg">#80000000</color>
+    <color name="db_shortcut_bg">#33000000</color>
+    <color name="db_shortcut_focus_bg">#66ffffff</color>
 </resources>
