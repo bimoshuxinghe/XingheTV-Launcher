@@ -25,7 +25,7 @@
     <string name="app_info_settings">打开应用设置</string>
     <string name="app_info_unhide_app">在主屏幕上显示</string>
     <string name="app_label">主屏幕</string>
-    <string name="app_name">Leanback启动器</string>
+    <string name="app_name">星河桌面</string>
     <string name="app_releases">历史版本</string>
     <string name="apps_order_pref_label">根据最近的使用情况自动排序</string>
     <string name="banners_corners_radius">弧度 (px)</string>
