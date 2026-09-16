@@ -56,7 +56,7 @@ class DangbeiMainActivity : Activity() {
         viewPager = findViewById(R.id.db_view_pager)
 
         // 设置默认壁纸
-        wallpaperView.setImageResource(R.drawable.edit_mode_background)
+        wallpaperView.setImageResource(R.drawable.db_default_wallpaper)
 
         // 加载应用
         loadApps()
